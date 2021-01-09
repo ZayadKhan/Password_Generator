@@ -4,6 +4,15 @@
   // need to show the password on the page
 
   var generateBtn = document.querySelector("#generate");
+  var UprArr = ["QWERTYUIOPASDFGHJKLZXCVBNM"];
+  var LowArr = ["qwertyuiopasdfghjklzxcvbnm"];
+  var NumArr = ["0123456789"];
+  var SymArr = ["!@#$%^&*()_+<>?,./"];
+
+  // console.log(UprArr)
+  // console.log(LowArr)
+  // console.log(NumArr)
+  // console.log(SymArr)
 
   // Write password to the #password input
   function writePassword() {
@@ -11,6 +20,7 @@
     // THEN I am presented with a series of prompts for password criteria
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
+    prompt("How many characters would you like your password? Choose between 8 and 128")
   
     // WHEN the password is generated
   // THEN the password is either displayed in an alert or written to the page
@@ -23,6 +33,7 @@
   
   // WHEN prompted for password criteria
   // THEN I select which criteria to include in the password
+  
   
   
   // WHEN prompted for the length of the password
