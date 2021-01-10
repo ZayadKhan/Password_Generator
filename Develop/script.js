@@ -10,7 +10,7 @@
   var NumArr = "0123456789";
   var SpecialArr = "!@#$%^&*()_-+={}[];:'`~<,>.?/|"
   var passwordLength;
-  // var lowercaseCheck;
+  var lowercaseCheck;
   var uppercaseCheck;
   var numberCheck;
   var specialCheck;
@@ -32,28 +32,28 @@ function determineLength(){
     return passwordLength;
 }
 // Function used to determine whether the user wants to iunclude lowercase characters in the password
-// function determineLowercase(){
-//   lowercaseCheck = prompt("Do you want to include lowercase letters in your password? \n(Yes or No)");
-//   lowercaseCheck = lowercaseCheck.toLowerCase();
+function determineLowercase(){
+  lowercaseCheck = prompt("Do you want to include lowercase letters in your password? \n(Yes or No)");
+  lowercaseCheck = lowercaseCheck.toLowerCase();
 
-//     if (lowercaseCheck === null || lowercaseCheck === ""){
-//       alert("Please answer Yes or No");
-//       determineLowercase();
+    if (lowercaseCheck === null || lowercaseCheck === ""){
+      alert("Please answer Yes or No");
+      determineLowercase();
 
-//     }else if (lowercaseCheck === "yes" || lowercaseCheck ==="y"){
-//       lowercaseCheck = true;
-//       return lowercaseCheck;
+    }else if (lowercaseCheck === "yes" || lowercaseCheck ==="y"){
+      lowercaseCheck = true;
+      return lowercaseCheck;
 
-//     }else if (lowercaseCheck === "no" || lowercaseCheck ==="n"){
-//       lowercaseCheck = false;
-//       return lowercaseCheck;
+    }else if (lowercaseCheck === "no" || lowercaseCheck ==="n"){
+      lowercaseCheck = false;
+      return lowercaseCheck;
     
-//     }else {
-//       alert("Please answer Yes or No");
-//       determineLowercase();
-//     }
-//     return lowercaseCheck;
-// }
+    }else {
+      alert("Please answer Yes or No");
+      determineLowercase();
+    }
+    return lowercaseCheck;
+}
 //Function used to determine whether the user wants to include uppercase characters in the password
 function determineUppercase(){
   uppercaseCheck = prompt("Do you want to include uppercase letters in your password? \n(Yes or No)");
@@ -131,8 +131,8 @@ function determineSpecial(){
 function generatePassword(){
   determineLength();
   console.log(passwordLength);
-  // determineLowercase();
-  // console.log(lowercaseCheck);
+  determineLowercase();
+  console.log(lowercaseCheck);
   determineUppercase();
   console.log(uppercaseCheck);
   determineNumbers();
@@ -140,19 +140,43 @@ function generatePassword(){
   determineSpecial();
   console.log(specialCheck);
 
-var characters = LowArr;
+var characters = "";
 var password = "";
-if (uppercaseCheck && numberCheck && specialCheck){
-  characters+= UprArr + NumArr + SpecialArr;
+if (lowercaseCheck && uppercaseCheck && numberCheck && specialCheck){
+  characters+= LowArr + UprArr + NumArr + SpecialArr;
+
+}else if (lowercaseCheck && uppercaseCheck && numberCheck){
+  characters += LowArr + UprArr + NumArr;
+
+}else if (lowercaseCheck && uppercaseCheck && specialCheck){
+  characters += LowArr + UprArr + SpecialArr;
+
+}else if (lowercaseCheck && numberCheck && specialCheck){
+  characters += LowArr + NumArr + SpecialArr;
+
+}else if (uppercaseCheck && numberCheck && specialCheck){
+  characters += UprArr + NumArr + SpecialArr;
+
+}else if (lowercaseCheck && uppercaseCheck){
+  characters += LowArr + UprArr;
 
 }else if (uppercaseCheck && numberCheck){
   characters += UprArr + NumArr;
 
-}else if (numberCheck && specialCheck){
-  characters += NumArr + SpecialArr;
+}else if (lowercaseCheck && specialCheck){
+  characters += LowArr + SpecialArr;
+
+}else if (uppercaseCheck && numberCheck){
+  characters += UprArr + NumArr;
 
 }else if (uppercaseCheck && specialCheck){
   characters += UprArr + SpecialArr;
+
+}else if (numberCheck && specialCheck){
+  characters += NumArr + SpecialArr;
+
+}else if (lowercaseCheck){
+  characters += LowArr;
 
 }else if (uppercaseCheck){
   characters += UprArr;
@@ -164,7 +188,7 @@ if (uppercaseCheck && numberCheck && specialCheck){
   characters += SpecialArr;
 
 }else{
-  characters === LowArr;
+  alert("No characters chosen");
 }
 
   for(var i = 0; i < passwordLength; i++){
